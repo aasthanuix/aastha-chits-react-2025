@@ -1,0 +1,11 @@
+# Env
+.env
+
+# Dependencies
+node_modules/
+
+# User uploads
+uploads/
+
+# Logs
+*.log
