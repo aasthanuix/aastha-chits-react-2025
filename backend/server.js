@@ -73,7 +73,7 @@ io.on('connection', (socket) => {
 const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost:5174",
-  "https://www.universalsexports.com",
+  "https://universalsexports.com",
   "https://aastha-chits-react-2025.vercel.app",
 ];
 
