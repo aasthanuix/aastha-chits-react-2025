@@ -46,7 +46,7 @@ const markAsPaid = async (id) => {
   try {
     const token = localStorage.getItem('token');
     await axios.patch(
-      `${url}/transactions/${id}/status`,
+      `${url}/api/transactions/${id}/status`,
       { status: 'Paid' },
       { headers: { Authorization: `Bearer ${token}` } }
     );
