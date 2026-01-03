@@ -115,7 +115,7 @@ const EditUser = ({url}) => {
           autoComplete="off"
         />
 
-        <label>Enroll Chit Plans (select multiple):</label>
+        <p>Enroll Chit Plans (select multiple):</p>
         <select
           name="enrolledChits"
           multiple
