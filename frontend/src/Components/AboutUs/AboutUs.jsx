@@ -22,11 +22,15 @@ const AboutUs = () => {
           <div className="col-xl-6">
             <div className='heading-bx style1'>
             <p className="text-white mw-100">
-              At Aastha Chits, we understand that saving money and planning for the future isn’t always easy and that’s exactly why we’re here. Based in Chandra Layout, Bangalore, we’ve been helping individuals and businesses achieve their financial goals through simple, secure, and transparent chit fund solutions.
+              At Aastha Chits, we understand that saving money and planning for the future isn’t always easy and that’s exactly why we’re here. 
+              Based in Chandra Layout, Bangalore, we’ve been helping individuals and businesses achieve their financial goals through simple, secure, and 
+              transparent chit fund solutions.
             </p>
             <p className=" text-white mw-100">
-              Over the years, we’ve built more than just a customer base — we’ve built trust. Whether you're a salaried employee trying to build your savings, a small business owner managing cash flow, or an entrepreneur looking for flexible funding options, our plans are tailored to fit your needs.
-              We’re proud to offer legally compliant, risk-mitigated chit plans backed by a team that genuinely cares. At Aastha Chits, we believe financial planning should be clear, flexible, and rewarding — not complicated or stressful.
+              Over the years, we’ve built more than just a customer base we’ve built trust. Whether you're a salaried employee trying to build your savings, 
+              a small business owner managing cash flow, or an entrepreneur looking for flexible funding options, our plans are tailored to fit your needs.
+              We’re proud to offer legally compliant, risk-mitigated chit plans backed by a team that genuinely cares. At Aastha Chits, we believe financial
+              planning should be clear, flexible, and rewarding not complicated or stressful.
             </p>  
             </div>
             <div className="features">
