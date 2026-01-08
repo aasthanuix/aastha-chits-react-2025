@@ -42,7 +42,7 @@ const Footer = () => {
                     <ul>
                       <li>
                         <p>Call us </p>
-                        <i className="fas fa-phone-alt"></i><a href="tel:+91 76769 73099" style={{fontSize: 24}}>+91  76769  73099</a>
+                        <i className="fas fa-phone-alt"></i><a href="tel:+91 76769 73099">+91  76769  73099</a>
                       </li>
                       <li>
                         <p>Address</p>
