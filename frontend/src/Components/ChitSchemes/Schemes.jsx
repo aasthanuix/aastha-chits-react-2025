@@ -37,12 +37,21 @@ const Schemes = () => {
           <tbody>
             {schemes.map((scheme, index) => (
               <tr key={index} style={{background: scheme.background}}>
-                <td style={{fontSize: 18, fontWeight:800}}>{scheme.name}</td>                
-                <td style={{fontSize: 18, fontWeight:800}}>₹{scheme.amount.toLocaleString()}</td>
-                <td>₹{scheme.minBid}</td>
-                <td>₹{scheme.maxBid}</td>
-                <td>{scheme.duration}</td>
-                <td style={{fontSize: 18, fontWeight:800}}>₹{scheme.total} /-</td>
+                <td data-label="Plan Name" style={{ fontSize: 18, fontWeight: 800 }}>
+  {scheme.name}
+</td>
+
+<td data-label="Monthly Amount" style={{ fontSize: 18, fontWeight: 800 }}>
+  ₹{scheme.amount}
+</td>
+
+<td data-label="Min Bidding">₹{scheme.minBid}</td>
+<td data-label="Max Bidding">₹{scheme.maxBid}</td>
+<td data-label="Duration">{scheme.duration}</td>
+
+<td data-label="Total Value" style={{ fontSize: 18, fontWeight: 800 }}>
+  ₹{scheme.total} /-
+</td>
               </tr>
             ))}
           </tbody>
