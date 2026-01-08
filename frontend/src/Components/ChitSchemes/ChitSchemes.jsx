@@ -4,7 +4,7 @@ import "tippy.js/dist/tippy.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FaArrowRight } from "react-icons/fa";
-import { fetchChitPlans } from "../../api";
+import { fetchChitPlans } from "../../api/index.js";
 import EnrollForm from "../Brochure/EnrollForm";
 
 const filters = [
