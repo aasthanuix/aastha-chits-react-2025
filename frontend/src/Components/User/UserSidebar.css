@@ -1,44 +1,105 @@
-/* src/components/User/UserSidebar.css */
 .user-sidebar {
-  width: 240px;
-  background-color: #f9f9f9;
-  padding: 20px;
-  height: 100vh;
-  border-right: 1px solid #ddd;
+  width: 250px;
+  min-height: 100vh;
+  background-color: #0d1b2a;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  position: fixed; /* stick on left */
+  top: 0;
+  left: 0;
+  z-index: 1000;
 }
 
 .sidebar-logo {
-  font-size: 22px;
-  font-weight: bold;
-  margin-bottom: 30px;
+  font-size: 30px;
   text-align: center;
-  color: #2c3e50;
+  margin: 50px 0;
+  color: #fff;
 }
 
 .sidebar-nav {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  padding: 0;
 }
 
 .sidebar-link {
   display: flex;
   align-items: center;
-  gap: 12px;
-  color: #333;
-  font-size: 16px;
+  padding: 0.8rem 1rem;
+  color: #fff;
   text-decoration: none;
-  padding: 8px 10px;
-  border-radius: 8px;
-  transition: background 0.3s ease;
+  transition: background 0.2s;
+}
+
+.sidebar-link .icon {
+  margin-right: 10px;
 }
 
 .sidebar-link:hover,
 .sidebar-link.active {
-  background-color: #e0ecff;
-  color: #1a73e8;
+  background-color: #1b263b;
 }
 
-.sidebar-link .icon {
-  font-size: 18px;
+.sidebar-toggle {
+  display: none;
+  position: fixed;
+  /* top: 1rem; */
+  right: 1rem;
+  z-index: 1500;
+  background-color: #1b263b;
+  border: none;
+  color: #fff;
+  padding: 0.5rem;
+  font-size: 1.5rem;
+  border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+  .sidebar-toggle {
+    display: block;
+  }
+}
+
+@media (max-width: 768px) {
+  .user-sidebar {
+    width: 200px;
+    position: absolute;
+    left: -220px; /* hide by default */
+    top: 0;
+    transition: left 0.3s;
+  }
+
+  .sidebar-logo {
+  display: flex;
+  font-size: 20px;
+  text-align: center;
+  margin: 50px 5px;
+  color: #fff;
+}
+
+  .user-sidebar.open {
+    left: 0;
+  }
+}
+
+/* Close button inside sidebar (mobile only) */
+.sidebar-close {
+  display: none;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .sidebar-close {
+    display: block;
+  }
 }
