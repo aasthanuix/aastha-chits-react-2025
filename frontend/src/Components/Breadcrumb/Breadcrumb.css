@@ -38,6 +38,7 @@
 @media (max-width: 1200px){
   .breadcrumb-title{
     left: 15px;
+    font-size: 20px;
   }
 }
 
