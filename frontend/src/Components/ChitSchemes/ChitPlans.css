@@ -41,3 +41,40 @@
 .schemes-table tr:nth-child(even) {
   background-color: #f2f2f2;
 }
+
+@media (max-width: 768px) {
+  .schemes-table thead {
+    display: none;
+  }
+
+  .schemes-table,
+  .schemes-table tbody,
+  .schemes-table tr,
+  .schemes-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .schemes-table tr {
+    margin-bottom: 16px;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .schemes-table td {
+    text-align: right;
+    padding: 10px 14px;
+    position: relative;
+    font-size: 14px;
+  }
+
+  .schemes-table td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 12px;
+    opacity: 0.85;
+  }
+}
