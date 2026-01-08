@@ -15,10 +15,10 @@ const UserHeader = () => {
       <div className="user-header-left">
         <h3>Welcome to Aastha Chits</h3>
       </div>
-      <div className="user-header-right">
+      {/* <div className="user-header-right">
         <FaUserCircle className="header-icon profile-icon" title="Profile" />
         <FaSignOutAlt className="header-icon logout-icon" title="Logout" onClick={handleLogout} />
-      </div>
+      </div> */}
     </header>
   );
 };
