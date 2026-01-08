@@ -1,32 +1,32 @@
-/* src/components/User/UserHeader.css */
 .user-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 18px 24px;
-  background-color: #f4f7fc;
-  border-bottom: 1px solid #d1d1d1;
-}
-
-.user-header-left h3 {
-  font-size: 20px;
-  color: #333;
-  margin: 0;
-}
-
-.user-header-right {
-  display: flex;
-  align-items: center;
-  gap: 20px;
+  padding: 0.8rem 1rem;
+  background-color: #1b263b;
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 500;
 }
 
 .header-icon {
-  font-size: 22px;
+  font-size: 1.4rem;
+  margin-left: 1rem;
   cursor: pointer;
-  color: #444;
-  transition: color 0.3s ease;
 }
 
-.header-icon:hover {
-  color: #1a73e8;
+.user-header-left h3 {
+  font-size: 35px;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .user-header-left h3 {
+    font-size: 20px;
+  }
+
+  .header-icon {
+    font-size: 1.2rem;
+  }
 }
