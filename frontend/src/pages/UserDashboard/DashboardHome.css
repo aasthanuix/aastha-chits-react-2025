@@ -5,7 +5,7 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #333;
   background: #f9faff;
-  border-radius: 12px;
+  /* border-radius: 12px; */
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
@@ -57,7 +57,7 @@
 
 .dashboard-card {
   background: white;
-  border-radius: 14px;
+  /* border-radius: 14px; */
   padding: 25px 25px 30px;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
   transition: box-shadow 0.3s ease, transform 0.3s ease;
@@ -111,7 +111,7 @@
   font-size: 1rem;
   color: #444;
   transition: background-color 0.3s ease, transform 0.3s ease;
-  border-radius: 8px;
+  /* border-radius: 8px; */
 }
 
 .dashboard-list-item:hover {
@@ -155,7 +155,7 @@
   background-color: #ffecb3;
   color: #fbc02d;
   padding: 3px 10px;
-  border-radius: 14px;
+  /* border-radius: 14px; */
   font-weight: 600;
   font-size: 0.85rem;
   text-transform: uppercase;
@@ -165,7 +165,7 @@
   background-color: #c8e6c9;
   color: #388e3c;
   padding: 3px 10px;
-  border-radius: 14px;
+  /* border-radius: 14px; */
   font-weight: 600;
   font-size: 0.85rem;
   text-transform: uppercase;
@@ -235,7 +235,7 @@
 .auctions-card {
   grid-column: 1 / -1; /* span across all grid columns */
   background: white;
-  border-radius: 14px;
+  /* border-radius: 14px; */
   padding: 25px 25px 30px;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
   transition: box-shadow 0.3s ease, transform 0.3s ease;
