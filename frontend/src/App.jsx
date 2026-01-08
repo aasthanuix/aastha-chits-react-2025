@@ -17,7 +17,7 @@ import ResetPassword from './pages/ForgotPassword/ResetPassword';
 
 const App = () => {
 
-  const url = "http://localhost:4000";
+  const url = "https://api.universalsexports.com";
 
   return (
     <Routes>
