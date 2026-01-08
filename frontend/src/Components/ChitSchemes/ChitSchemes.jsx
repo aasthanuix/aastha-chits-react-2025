@@ -22,6 +22,7 @@ const colorPalette = [
 ];
 
 const ChitSchemes = () => {
+  
   const [plans, setPlans] = useState([]);
   const [activeFilter, setActiveFilter] = useState("All");
   const [showModal, setShowModal] = useState(false);
