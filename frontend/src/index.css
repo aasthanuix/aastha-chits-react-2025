@@ -12572,6 +12572,10 @@ dl dd {
     min-width: 130px;
     padding: 10px 0;
   }
+  .header .navbar-brand img {
+  height: auto;
+  width: 90px;
+}
 }
 .header .navbar-brand .brand-logo-dark {
   display: none;
@@ -13357,7 +13361,7 @@ footer .widget_services ul li:hover {
   margin-bottom: 20px;
   font-weight: 600;
   text-transform: capitalize;
-  font-size: 24px;
+  font-size: 20px;
   position: relative;
 }
 
@@ -13386,7 +13390,7 @@ footer .widget_services ul li:hover {
   padding: 8px 0;
   display: block;
   line-height: 1.5;
-  font-size: 17px;
+  font-size: 14px;
   color: #fff;
 }
 .footer_widget ul li a span {
@@ -13455,7 +13459,7 @@ footer .widget_services ul li:hover {
   padding: 0;
   display: block;
   line-height: inherit;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 500;
   /* color: var(--bs-secondary); */
   /* text-decoration-line: underline !important; */
@@ -13468,7 +13472,7 @@ footer .widget_services ul li:hover {
   position: relative;
   z-index: 1;
   overflow: hidden;
-  background-color: #1b0c64;
+  background-color: #271276;
 }
 .footer-style1 .footer-top {
   padding: 25px 0 0px;
@@ -16574,7 +16578,7 @@ footer .widget_services ul li:hover {
 }
 @media only screen and (max-width: 1280px) {
   .section-sp1 {
-    padding-top: 70px;
+    padding-top: 40px;
     padding-bottom: 40px;
   }
   .section-sp2 {
@@ -16591,7 +16595,7 @@ footer .widget_services ul li:hover {
 }
 @media only screen and (max-width: 767px) {
   .section-sp1 {
-    padding-top: 50px;
+    padding-top: 20px;
     padding-bottom: 20px;
   }
   .section-sp2 {
@@ -16759,25 +16763,26 @@ footer .widget_services ul li:hover {
   line-height: 1.1;
   color: #0b1d75 !important;
   font-weight: 400;
-  letter-spacing: -3px;
+  /* letter-spacing: -3px; */
   font-family: ui-sans-serif;
 }
 .heading-bx.style1 .title-head {
-  font-size: 85px;
+  font-size: 70px;
   color: #0b1d75 !important;
   line-height: 1.1;
   font-weight: 400;
   margin-bottom: 0;
-  letter-spacing: -3px;
+  /* letter-spacing: -3px; */
   font-family: "Instrument Serif";
 }
 .heading-bx.style1 p {
   color: var(--bs-dark-700);
   font-weight: 400;
   margin-bottom: 0;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 1.5;
   max-width: 500px;
+  text-align: justify;
 }
 .heading-bx.style1.text-white .title-head {
   color: #fff;
@@ -16799,7 +16804,7 @@ footer .widget_services ul li:hover {
     font-size: 68px;
   }
   .heading-bx.style1 .title-head-sm {
-    font-size: 52px;
+    font-size: 26px;
   }
   .heading-bx.style1 .title-head-xs {
     font-size: 42px;
@@ -16810,7 +16815,10 @@ footer .widget_services ul li:hover {
     font-size: 52px;
   }
   .heading-bx.style1 .title-head-sm {
-    font-size: 45px;
+    font-size: 26px;
+  }
+   .heading-bx.style1 p {
+    font-size: 16px;
   }
 }
 @media (max-width: 575.98px) {
@@ -16818,14 +16826,14 @@ footer .widget_services ul li:hover {
     margin-bottom: 30px;
   }
   .heading-bx.style1 p {
-    font-size: 18px;
+    font-size: 16px;
   }
   .heading-bx.style1 .title-head {
     font-size: 48px;
   }
   .heading-bx.style1 .title-head-sm {
-    font-size: 42px;
-    letter-spacing: -1px;
+    font-size:26px;
+    /* letter-spacing: -1px; */
   }
 }
 
@@ -17142,7 +17150,7 @@ footer .widget_services ul li:hover {
     font-size: 100px;
     line-height: 1.05;
     font-weight: 500;
-    letter-spacing: -4px;
+    /* letter-spacing: -4px; */
     font-family: serif;
     color: #0b1d75;
 }
@@ -17192,7 +17200,7 @@ footer .widget_services ul li:hover {
     height: 700px;
   }
   .hero-banner-one .title {
-    font-size: 92px;
+    font-size: 40px;
   }
   .hero-banner-one .hero-content {
     margin-bottom: 50px;
@@ -17215,7 +17223,7 @@ footer .widget_services ul li:hover {
     margin-bottom: 0;
   }
   .hero-banner-one .title {
-    font-size: 72px;
+    font-size: 40px;
   }
   .hero-banner-one p {
     font-size: 16px;
@@ -17247,11 +17255,11 @@ footer .widget_services ul li:hover {
     margin-bottom: 30px;
   }
   .hero-banner-one .title {
-    font-size: 52px;
+    font-size: 40px;
   }
   .hero-banner-one .hero-thumbnail {
-    width: 320px;
-    height: 250px;
+    width: 390px;
+    height: 390px;
   }
 }
 
@@ -22043,7 +22051,7 @@ ul[class*=list-].fs16 {
 }
 .list-style1 li {
   position: relative;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 400;
   list-style: none;
   margin-bottom: 10px;
@@ -22065,12 +22073,12 @@ ul[class*=list-].fs16 {
 }
 @media (max-width: 1479.98px) {
   .list-style1 li {
-    font-size: 18px;
+    font-size: 14px;
   }
 }
 @media (max-width: 991.98px) {
   .list-style1 li {
-    font-size: 16px;
+    font-size: 14px;
   }
   .list-style1 li::after {
     width: 16px;
@@ -23793,7 +23801,7 @@ figure figcaption {
 .achievement-list li .achievement-head {
   position: relative;
   z-index: 1;
-  font-size: 50px;
+  font-size: 40px;
   color: #df3535;
   line-height: 1;
   font-family: "Instrument Serif";
@@ -24043,17 +24051,20 @@ figure figcaption {
 }
 @media (max-width: 991.98px) {
   .about-section-one {
-    padding-bottom: 80px;
+            padding-bottom: 20px;
+        padding-top: 10px;
   }
 }
 @media (max-width: 767.98px) {
   .about-section-one {
-    padding-bottom: 50px;
+            padding-bottom: 20px;
+        padding-top: 10px;
   }
 }
 @media (max-width: 575.98px) {
   .about-section-one {
-    padding-bottom: 30px;
+            padding-bottom: 20px;
+        padding-top: 10px;
   }
 }
 .about-section-one::before {
@@ -25417,13 +25428,31 @@ figure figcaption {
   .form-card {
     padding: 35px;
   }
+  .section-area .title-head-sm {
+    font-size: 31px
+  }
 }
+.section-area .title-head-sm {
+    font-family: 'Instrument Serif';
+    font-weight: 500;
+    font-size: 60px;
+
+  }
 @media (max-width: 575.98px) {
   .form-card {
     padding: 25px;
   }
   .form-card .heading-bx .title-head-sm {
-    font-size: 42px;
+    font-size: 30px;
+  }
+  .section-area .title-head-sm {
+    font-size: 31px
+  }
+  .featured-bx5 .featured-title{
+    font-size: 20px;
+  }
+  .featured-bx5 p{
+    font-size: 12px !important;
   }
 }
 
@@ -25435,6 +25464,12 @@ figure figcaption {
 @media (max-width: 1199.98px) {
   .contact-form-card {
     margin-top: 0;
+  }
+  .featured-bx5 .featured-title{
+    font-size: 20px;
+  }
+  .featured-bx5 p{
+    font-size: 12px !important;
   }
 }
 
