@@ -17,14 +17,14 @@ import ResetPassword from './pages/ForgotPassword/ResetPassword';
 
 const App = () => {
 
-  const url = "https://api.universalsexports.com";
+  const url = "http://localhost:4000";
 
   return (
     <Routes>
       {/* Public Routes */}
-      <Route path="/" element={<Home url={url}/>} />
+      <Route path="/" element={<Home />} />
       <Route path="/about" element={<About />} />
-      <Route path="/chit-plans" element={<ChitPlans />} />
+      <Route path="/chits-plans" element={<ChitPlans />} />
       <Route path="/chits-benefits" element={<ChitsBenefits />} />
       <Route path="/contact-us" element={<ContactUs />} />
       <Route path="/login" element={<LoginPage url={url}/>} />
