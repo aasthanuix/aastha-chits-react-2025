@@ -1,21 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Bar, Line } from 'react-chartjs-2';
 import { motion } from 'framer-motion';
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  LineElement,
-  PointElement,
-  Title,
-  Tooltip,
-  Legend
-} from 'chart.js';
+
+import 'chart.js/auto';
+
 import { FaUsers, FaExchangeAlt, FaLayerGroup, FaClock, FaCheckCircle, FaTimesCircle, FaHourglassHalf } from 'react-icons/fa';
 import './DashboardAnalytics.css';
-
-ChartJS.register(CategoryScale, LinearScale, BarElement, LineElement, PointElement, Title, Tooltip, Legend);
 
 const DashboardAnalytics = ({url}) => {
   const [stats, setStats] = useState({
@@ -75,17 +65,45 @@ const DashboardAnalytics = ({url}) => {
   };
 
   const chartOptions = {
-    responsive: true,
-    animation: {
-      duration: 1200,
-      easing: 'easeOutQuart'
-    },
-    plugins: {
-      legend: { position: 'top' },
-      title: { display: true }
-    },
-    scales: { y: { beginAtZero: true } }
-  };
+  responsive: true,
+  maintainAspectRatio: false,
+  animation: {
+    duration: 1200,
+    easing: 'easeOutQuart'
+  },
+  plugins: {
+    legend: { position: 'top' },
+    title: { display: true }
+  },
+  scales: { y: { beginAtZero: true } }
+};
+
+const getActivityText = (activity) => {
+  const date = new Date(activity.date).toLocaleDateString();
+
+  switch (activity.status.toLowerCase()) {
+    case "paid":
+      return (
+        <>
+          paid <b>₹{activity.amount}</b> on {date}
+        </>
+      );
+
+    case "pending":
+      return (
+        <>
+          has a <b>pending payment</b> of <b>₹{activity.amount}</b>
+        </>
+      );
+
+    default:
+      return (
+        <>
+          has an <b>overdue payment</b> of <b>₹{activity.amount}</b>
+        </>
+      );
+  }
+};
 
   return (
     <div className="analytics-page">
@@ -171,16 +189,20 @@ const DashboardAnalytics = ({url}) => {
         }
 
         return (
-          <li key={index} className="activity-item fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
-            <FaClock className="activity-icon" />
-            <span>
-              <strong>{activity.userName}</strong> paid <b>₹{activity.amount}</b> on{" "}
-              {new Date(activity.date).toLocaleDateString()}{" "}
-              <span className={`status-badge ${statusClass}`}>
-                <StatusIcon /> {activity.status}
-              </span>
-            </span>
-          </li>
+          <li
+  key={index}
+  className="activity-item fade-in"
+  style={{ animationDelay: `${index * 0.1}s` }}
+>
+  <FaClock className="activity-icon" />
+
+  <span>
+    <strong>{activity.userName}</strong> {getActivityText(activity)}{" "}
+    <span className={`status-badge ${statusClass}`}>
+      <StatusIcon /> {activity.status}
+    </span>
+  </span>
+</li>
         );
       })
     ) : (
