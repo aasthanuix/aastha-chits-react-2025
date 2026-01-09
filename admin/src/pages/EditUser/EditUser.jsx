@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import AddTransactions from '../AddTransactions/AddTransactions';
 import './EditUser.css';
 
-const EditUser = ({url}) => {
+const EditUser = ({ url }) => {
   const { userId } = useParams();
   const [formData, setFormData] = useState({
     name: '',
@@ -39,7 +39,7 @@ const EditUser = ({url}) => {
     const fetchPlans = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await fetch(url+'/api/chit-plans', {
+        const res = await fetch(url + '/api/chit-plans', {
           headers: { Authorization: `Bearer ${token}` },
         });
         if (!res.ok) throw new Error('Failed to fetch plans');
@@ -90,10 +90,11 @@ const EditUser = ({url}) => {
         </div>
       )}
 
-      <form onSubmit={handleUpdateUser}>
+      <form onSubmit={handleUpdateUser} className="edit-user-form">
         <input
           name="name"
           type="text"
+          placeholder="Name"
           value={formData.name}
           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
           required
@@ -102,6 +103,7 @@ const EditUser = ({url}) => {
         <input
           name="email"
           type="email"
+          placeholder="Email"
           value={formData.email}
           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
           required
@@ -110,28 +112,59 @@ const EditUser = ({url}) => {
         <input
           name="phone"
           type="text"
+          placeholder="Phone"
           value={formData.phone}
           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
           autoComplete="off"
         />
 
-        <p>Enroll Chit Plans (select multiple):</p>
-        <select
-          name="enrolledChits"
-          multiple
-          value={formData.enrolledChits}
-          onChange={(e) => {
-            const selected = Array.from(e.target.selectedOptions).map((opt) => opt.value);
-            setFormData({ ...formData, enrolledChits: selected });
-          }}
-          size={plans.length > 5 ? 5 : plans.length}
-        >
-          {plans.map((plan) => (
-            <option key={plan._id} value={plan._id}>
-              {plan.planName}
-            </option>
-          ))}
-        </select>
+        <p>Enroll Chit Plans:</p>
+        <div className="multi-select">
+          <div className="selected-chips">
+            {formData.enrolledChits.map((id) => {
+              const plan = plans.find((p) => p._id === id);
+              if (!plan) return null;
+              return (
+                <div key={id} className="chip">
+                  {plan.planName}
+                  <span
+                    className="remove-chip"
+                    onClick={() =>
+                      setFormData({
+                        ...formData,
+                        enrolledChits: formData.enrolledChits.filter((pid) => pid !== id),
+                      })
+                    }
+                  >
+                    ×
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+
+          <select
+            onChange={(e) => {
+              const value = e.target.value;
+              if (!formData.enrolledChits.includes(value) && value !== '') {
+                setFormData({
+                  ...formData,
+                  enrolledChits: [...formData.enrolledChits, value],
+                });
+              }
+              e.target.value = '';
+            }}
+          >
+            <option value="">Select plan...</option>
+            {plans
+              .filter((p) => !formData.enrolledChits.includes(p._id))
+              .map((plan) => (
+                <option key={plan._id} value={plan._id}>
+                  {plan.planName}
+                </option>
+              ))}
+          </select>
+        </div>
 
         <div className="button-group">
           <button type="submit" className="btn update-btn">
