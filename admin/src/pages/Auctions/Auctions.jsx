@@ -54,7 +54,6 @@ const Auctions = ({ url }) => {
         setActiveAuction(active);
         setPastAuctions(past);
 
-        // Fetch users for active auction
         if (active?.chitPlanId) fetchPlanUsers(active.chitPlanId);
       }
     } catch (err) {
@@ -158,47 +157,51 @@ const Auctions = ({ url }) => {
     setShowUpdateModal(true);
   };
 
-const handleSaveUpdate = async () => {
-  if (!modalAmount || isNaN(modalAmount)) return alert("Enter valid amount");
-  if (!modalBidder) return alert("Select highest bidder");
+  const handleSaveUpdate = async () => {
+    if (!modalAmount || isNaN(modalAmount)) return alert("Enter valid amount");
+    if (!modalBidder) return alert("Select highest bidder");
 
-  try {
-    const res = await fetch(`${url}/api/auctions/${activeAuction._id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({
-        currentAmount: Number(modalAmount),
-        highestBidder: modalBidder,
-      }),
-    });
-    const data = await res.json();
-    if (!res.ok) return alert(data.message);
+    try {
+      const res = await fetch(`${url}/api/auctions/${activeAuction._id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          currentAmount: Number(modalAmount),
+          highestBidder: modalBidder,
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok) return alert(data.message);
 
-    // Map highestBidder fields for frontend
-    const updatedAuction = {
-      ...data,
-      highestBidderName: planUsers.find(u => u._id === data.highestBidder)?.name || null,
-      highestBidderEmail: planUsers.find(u => u._id === data.highestBidder)?.email || null,
-    };
+      const updatedAuction = {
+        ...data,
+        highestBidderName:
+          planUsers.find((u) => u._id === data.highestBidder)?.name || null,
+        highestBidderEmail:
+          planUsers.find((u) => u._id === data.highestBidder)?.email || null,
+      };
 
-    setActiveAuction(updatedAuction);
-    setShowUpdateModal(false);
-  } catch (err) {
-    console.error(err);
-    alert("Failed to update auction");
-  }
-};
+      setActiveAuction(updatedAuction);
+      setShowUpdateModal(false);
+    } catch (err) {
+      console.error(err);
+      alert("Failed to update auction");
+    }
+  };
 
   const handleEndAuction = async () => {
     if (!activeAuction) return alert("No active auction to end");
     try {
-      const res = await fetch(`${url}/api/auctions/${activeAuction._id}/end`, {
-        method: "PATCH",
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const res = await fetch(
+        `${url}/api/auctions/${activeAuction._id}/end`,
+        {
+          method: "PATCH",
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
       const data = await res.json();
       if (!res.ok) return alert(data.message);
 
@@ -216,7 +219,7 @@ const handleSaveUpdate = async () => {
 
       {/* Create Auction */}
       <section className="createSection">
-        <h2>Create New Auction</h2>
+        {/* <h2>Create New Auction</h2> */}
         {loading ? (
           <p>Loading chit plans...</p>
         ) : (
@@ -234,7 +237,8 @@ const handleSaveUpdate = async () => {
                 <option value="">Select Plan</option>
                 {chitPlans.map((plan) => (
                   <option key={plan._id} value={plan._id}>
-                    {plan.planName} — ₹{plan.totalAmount} ({plan.duration} months)
+                    {plan.planName} — ₹{plan.totalAmount} ({plan.duration}{" "}
+                    months)
                   </option>
                 ))}
               </select>
@@ -268,7 +272,11 @@ const handleSaveUpdate = async () => {
               />
             </label>
 
-            <button type="submit" className="createBtn" disabled={!!activeAuction}>
+            <button
+              type="submit"
+              className="createBtn"
+              disabled={!!activeAuction}
+            >
               Create Auction
             </button>
             {activeAuction && (
@@ -362,34 +370,65 @@ const handleSaveUpdate = async () => {
         {pastAuctions.length === 0 ? (
           <p>No past auctions yet.</p>
         ) : (
-          <table className="auctionTable">
-            <thead>
-              <tr>
-                <th>Plan</th>
-                <th>Final Amount</th>
-                <th>Highest Bidder</th>
-                <th>Date</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {[...pastAuctions]
-                .sort((a, b) => new Date(b.auctionDate) - new Date(a.auctionDate))
-                .map((auc) => (
-                  <tr key={auc._id} className="fadeIn">
-                    <td>{auc.chitPlanName}</td>
-                    <td>₹{auc.currentAmount}</td>
-                    <td>
-                      {auc.highestBidderName
-                        ? `${auc.highestBidderName} (${auc.highestBidderEmail})`
-                        : "N/A"}
-                    </td>
-                    <td>{new Date(auc.auctionDate).toLocaleString()}</td>
-                    <td>{auc.status}</td>
-                  </tr>
-                ))}
-            </tbody>
-          </table>
+          <>
+            {/* Desktop Table */}
+            <table className="auctionTable">
+              <thead>
+                <tr>
+                  <th>Plan</th>
+                  <th>Final Amount</th>
+                  <th>Highest Bidder</th>
+                  <th>Date</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[...pastAuctions]
+                  .sort(
+                    (a, b) =>
+                      new Date(b.auctionDate) - new Date(a.auctionDate)
+                  )
+                  .map((auc) => (
+                    <tr key={auc._id} className="fadeIn">
+                      <td>{auc.chitPlanName}</td>
+                      <td>₹{auc.currentAmount}</td>
+                      <td>
+                        {auc.highestBidderName
+                          ? `${auc.highestBidderName} (${auc.highestBidderEmail})`
+                          : "N/A"}
+                      </td>
+                      <td>{new Date(auc.auctionDate).toLocaleString()}</td>
+                      <td>{auc.status}</td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+
+            {/* Mobile Cards */}
+            {pastAuctions.map((auc) => (
+              <div key={auc._id} className="auctionCardMobile">
+                <p>
+                  <span>Plan:</span> {auc.chitPlanName}
+                </p>
+                <p>
+                  <span>Final Amount:</span> ₹{auc.currentAmount}
+                </p>
+                <p>
+                  <span>Highest Bidder:</span>{" "}
+                  {auc.highestBidderName
+                    ? `${auc.highestBidderName} (${auc.highestBidderEmail})`
+                    : "N/A"}
+                </p>
+                <p>
+                  <span>Date:</span>{" "}
+                  {new Date(auc.auctionDate).toLocaleString()}
+                </p>
+                <p>
+                  <span>Status:</span> {auc.status}
+                </p>
+              </div>
+            ))}
+          </>
         )}
       </section>
     </div>
