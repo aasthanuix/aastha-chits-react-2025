@@ -1,54 +1,172 @@
-.transactions-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-  font-family: sans-serif;
-  font-weight: 500;
+/* ================= Root Page ================= */
+.admin-page {
+  max-width: 1200px;
+  margin: 24px auto;
+  padding: 16px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  font-family: 'Inter', sans-serif;
 }
 
-.transactions-table th,
-.transactions-table td {
-  padding: 12px;
-  border: 1px solid #ddd;
+/* ================= Title ================= */
+.page-title {
   text-align: center;
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  font-weight: 700;
+  color: #4f46e5;
+  margin-bottom: 24px;
+}
+
+/* ================= Table ================= */
+.transactions-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  border-radius: 14px;
+  font-size: clamp(0.85rem, 2.5vw, 1rem);
+}
+
+/* Header */
+.transactions-table thead {
+  background: linear-gradient(90deg, #4f46e5, #6366f1);
 }
 
 .transactions-table th {
-  background: #2c3e50;
-  color: white;
+  padding: 14px 16px;
+  color: #ffffff;
+  font-weight: 600;
+  text-align: left;
+  white-space: nowrap;
 }
 
+/* Body */
+.transactions-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #e5e7eb;
+  color: #1f2937;
+  vertical-align: middle;
+}
+
+/* Hover */
+.transactions-table tbody tr:hover {
+  background: #f9fafb;
+}
+
+/* ================= Status ================= */
+.transactions-table td:nth-child(5) {
+  font-weight: 600;
+}
+
+.transactions-table td:nth-child(5)::first-letter {
+  text-transform: uppercase;
+}
+
+/* ================= Actions ================= */
 .action-sub-columns {
-  display: grid;
-  grid-template-columns: 1fr 1fr; /* two fixed sub-columns */
+  display: flex;
   gap: 10px;
 }
 
 .sub-column {
-  display: flex;
-  justify-content: center;
+  flex: 1;
 }
 
 .placeholder {
-  width: 100%; 
-  /* height: 36px;  */
+  height: 36px;
 }
 
-.paid {
-  color: green;
-  font-weight: bold;
+/* ================= Buttons ================= */
+.btn-edit {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: none;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  background: linear-gradient(90deg, #10b981, #34d399);
+  color: #ffffff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.pending {
-  color: red;
-  font-weight: bold;
+.btn-edit:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.35);
 }
 
 .btn-delete {
-  background: #e74c3c;
-  color: white;
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 10px;
   border: none;
-  padding: 6px 12px;
+  font-weight: 600;
+  font-size: 0.85rem;
   cursor: pointer;
-  border-radius: 4px;
+  background: linear-gradient(90deg, #ef4444, #f87171);
+  color: #ffffff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-delete:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(239, 68, 68, 0.35);
+}
+
+/* ================= Empty State ================= */
+.transactions-table td[colspan="6"] {
+  text-align: center;
+  padding: 24px;
+  color: #6b7280;
+  font-weight: 600;
+}
+
+/* ================= Mobile Responsive ================= */
+@media (max-width: 900px) {
+  .transactions-table {
+    display: none;
+  }
+
+  .admin-page::after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+
+  .transaction-card {
+    background: #f9fafb;
+    border-radius: 14px;
+    padding: 16px;
+    margin-bottom: 16px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+    font-size: 0.9rem;
+  }
+
+  .transaction-card p {
+    margin: 6px 0;
+    color: #374151;
+  }
+
+  .transaction-card span {
+    font-weight: 600;
+    color: #4f46e5;
+  }
+
+  .transaction-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 12px;
+  }
+}
+
+/* ================= Mobile Transactions ================= */
+.transactions-mobile {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .transactions-mobile {
+    display: block;
+  }
 }
