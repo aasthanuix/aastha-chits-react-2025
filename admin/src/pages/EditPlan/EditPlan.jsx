@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getChitPlans, updateChitPlan } from '../../api';
-// import './AddPlan.css';
 
 const EditPlan = () => {
   const { id } = useParams();
@@ -22,19 +21,21 @@ const EditPlan = () => {
     fetchPlan();
   }, [id]);
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleImageChange = (e) => {
-    setImage(e.target.files[0]);
-  };
+  const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleImageChange = (e) => setImage(e.target.files[0]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const data = new FormData();
-    Object.keys(formData).forEach((key) => data.append(key, formData[key]));
+    const numberFields = ['monthlySubscription', 'minBidding', 'maxBidding', 'duration', 'totalAmount'];
+
+    Object.keys(formData).forEach((key) => {
+      let value = formData[key];
+      if (numberFields.includes(key)) value = Number(value);
+      data.append(key, value);
+    });
+
     if (image) data.append('image', image);
 
     try {
@@ -55,7 +56,10 @@ const EditPlan = () => {
         <input type="number" name="maxBidding" value={formData.maxBidding || ''} onChange={handleChange} required />
         <input type="number" name="duration" value={formData.duration || ''} onChange={handleChange} required />
         <input type="number" name="totalAmount" value={formData.totalAmount || ''} onChange={handleChange} required />
-        <input type="file" accept="image/*" onChange={handleImageChange} required/>
+        <input type="file" accept="image/*" onChange={handleImageChange} />
+
+        {image && <img src={URL.createObjectURL(image)} alt="Preview" className="preview-img" />}
+
         <button type="submit" className="btn-primary">Update Plan</button>
       </form>
     </div>
