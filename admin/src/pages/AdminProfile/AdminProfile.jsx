@@ -122,7 +122,10 @@ const AdminProfile = ({ url }) => {
 
       {/* Profile Display */}
       <div className="admin-info-card">
-        <img src={admin.avatar} alt="Admin Profile" className="admin-avatar" />
+        <img
+  src={admin.avatar || defaultAvatar}
+  alt="Admin Profile"
+ className="admin-avatar" style={{ height: 100, width: 100, borderRadius: '50%' }} />
         <div className="admin-details">
           <p><strong>Name:</strong> {admin.name}</p>
           <p><strong>Email:</strong> {admin.email}</p>
@@ -137,7 +140,9 @@ const AdminProfile = ({ url }) => {
         <div className="avatar-upload">
           <label className="admin-profile">Change Profile</label>
           <input type="file" accept="image/*" onChange={handleAvatarChange} />
-          {formData.avatar && <img src={formData.avatar} alt="Preview" className="avatar-preview" />}
+          {formData.avatar && (
+  <img src={formData.avatar} alt="Preview" style={{ height: 100, width: 100, borderRadius: '50%' }} />
+)}
         </div>
 
         <input
