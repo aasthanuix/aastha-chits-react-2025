@@ -5,5 +5,4 @@ const API = axios.create({
   withCredentials: true,
 });
 
-export const fetchChitPlans = () => API.get("/chit-plans");
-
+export const fetchChitPlans = () => API.get("/api/chit-plans");
