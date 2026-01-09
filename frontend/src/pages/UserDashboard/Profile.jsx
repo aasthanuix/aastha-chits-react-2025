@@ -71,13 +71,11 @@ const Profile = ({url}) => {
       {error && <p className="error-message">{error}</p>}
 
       <div className="profile-pic-section">
-        <img src={user.profilePic
-            ? `${url}/${user.profilePic}`
-            : '/default-user.png'
-            }
-          alt={`${user.name} profile`}
-          className="profile-pic"
-        />
+        <img
+  src={user.profilePic || "/default-user.png"}
+  alt={`${user.name} profile`}
+  className="profile-pic"
+/>
         <input
           type="file"
           accept="image/*"
