@@ -1,37 +1,39 @@
 import axios from 'axios';
 
-const API = axios.create({
-  baseURL: ' https://aasthachits-backend.onrender.com/api',
+const API_URL = axios.create({
+  baseURL: import.meta.env.VITE_API_URL + '/api',
   withCredentials: true
 });
 
-export const adminLogin = async (email, password) => {
-  const { data } = await API.post('/admin/login', { email, password });
-  return data;
-};
-
-API.interceptors.request.use((config) => {
+API_URL.interceptors.request.use((config) => {
   const token = localStorage.getItem('token');
   if (token) config.headers.Authorization = `Bearer ${token}`;
   return config;
 });
 
+export const adminLogin = async (email, password) => {
+  const { data } = await API_URL.post('/admin/login', { email, password });
+  return data;
+};
+
 // Chit Plans APIs
-export const getChitPlans = () => API.get('/chit-plans');
-export const addChitPlan = (formData) => API.post('/chit-plans', formData, { headers: { 'Content-Type': 'multipart/form-data' } });
-export const updateChitPlan = (id, formData) => API.put(`/chit-plans/${id}`, formData, { headers: { 'Content-Type': 'multipart/form-data' } });
-export const deleteChitPlan = (id) => API.delete(`/chit-plans/${id}`);
+export const getChitPlans = () => API_URL.get('/chit-plans');
+export const addChitPlan = (data) =>
+  API_URL.post('/chit-plans', data, { headers: { 'Content-Type': 'multipart/form-data' } });
+export const updateChitPlan = (id, data) =>
+  API_URL.put(`/chit-plans/${id}`, data, { headers: { 'Content-Type': 'multipart/form-data' } });
+export const deleteChitPlan = (id) => API_URL.delete(`/chit-plans/${id}`);
 
 // Users API
-export const getUsers = () => API.get('/users');
-export const addUser = (userData) => API.post('/users', userData);
+export const getUsers = () => API_URL.get('/users');
+export const addUser = (userData) => API_URL.post('/users', userData);
 export const updateUser = (id, userData) => API.put(`/users/${id}`, userData);
-export const deleteUser = (id) => API.delete(`/users/${id}`);
+export const deleteUser = (id) => API_URL.delete(`/users/${id}`);
 
 // Transactions API
-export const getTransactions = () => API.get('/transactions');
-export const addTransaction = (data) => API.post('/transactions', data);
-export const deleteTransaction = (id) => API.delete(`/transactions/${id}`);
+export const getTransactions = () => API_URL.get('/transactions');
+export const addTransaction = (data) => API_URL.post('/transactions', data);
+export const deleteTransaction = (id) => API_URL.delete(`/transactions/${id}`);
 export const updateTransactionStatus = async (req, res) => {
   try {
     const { userId, txnId } = req.params;
