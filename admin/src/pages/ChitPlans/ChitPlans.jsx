@@ -4,12 +4,6 @@ import { getChitPlans, deleteChitPlan } from '../../api';
 import ConfirmModal from '../../Components/ConfirmModel/ConfirmModel';
 import './ChitPlans.css';
 
-const API_URL = import.meta.env.VITE_API_URL;
-
-if (!API_URL) {
-  throw new Error('VITE_API_URL is not defined');
-}
-
 const ChitPlans = () => {
   const [plans, setPlans] = useState([]);
   const [showConfirm, setShowConfirm] = useState(false);
@@ -23,7 +17,7 @@ const ChitPlans = () => {
   const fetchPlans = async () => {
     try {
       const { data } = await getChitPlans();
-      setPlans(data || []);
+      setPlans(Array.isArray(data) ? data : []);
     } catch (error) {
       console.error('Error fetching plans', error);
     }
@@ -40,13 +34,7 @@ const ChitPlans = () => {
       setShowConfirm(false);
       fetchPlans();
     } catch (error) {
-      if (error.response?.status === 401) {
-        alert('Session expired. Please login again.');
-        localStorage.removeItem('token');
-        navigate('/login');
-      } else {
-        console.error('Error deleting plan', error);
-      }
+      console.error('Error deleting plan', error);
     }
   };
 
@@ -55,10 +43,7 @@ const ChitPlans = () => {
       <h2 className="page-title">Manage Chit Plans</h2>
 
       <div className="chitplans-actions">
-        <button
-          className="btn-primary"
-          onClick={() => navigate('/admin/chit-plans/add')}
-        >
+        <button className="btn-primary" onClick={() => navigate('/admin/chit-plans/add')}>
           Add New Plan
         </button>
       </div>
@@ -76,41 +61,31 @@ const ChitPlans = () => {
             <th>Actions</th>
           </tr>
         </thead>
-
         <tbody>
-          {plans.length ? (
+          {plans.length > 0 ? (
             plans.map((plan) => (
               <tr key={plan._id}>
                 <td>
                   <img
-                    src={
-                      plan.image
-                        ? `${API_URL}/uploads/${plan.image}`
-                        : '/placeholder.png'
-                    }
+                    src={plan.image || '/placeholder.png'}
                     alt={plan.planName}
                     className="plan-img"
                   />
                 </td>
-                <td>{plan.planName}</td>
+                <td className="plan-name">{plan.planName}</td>
                 <td>₹{plan.monthlySubscription}</td>
                 <td>{plan.minBidding}</td>
                 <td>{plan.maxBidding}</td>
                 <td>{plan.duration} Months</td>
-                <td>₹{plan.totalAmount}</td>
+                <td className="plan-amount">₹{plan.totalAmount}</td>
                 <td>
                   <button
                     className="btn-edit"
-                    onClick={() =>
-                      navigate(`/admin/chit-plans/edit/${plan._id}`)
-                    }
+                    onClick={() => navigate(`/admin/chit-plans/edit/${plan._id}`)}
                   >
                     Edit
                   </button>
-                  <button
-                    className="btn-delete"
-                    onClick={() => handleDeleteClick(plan._id)}
-                  >
+                  <button className="btn-delete" onClick={() => handleDeleteClick(plan._id)}>
                     Delete
                   </button>
                 </td>
