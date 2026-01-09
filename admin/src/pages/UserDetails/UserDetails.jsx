@@ -70,14 +70,12 @@ const UserDetails = ({url}) => {
               {user.transactions.map((txn, index) => (
                 <tr key={txn._id}>
                   <td>{index + 1}</td>
-                  <td>{txn.chitPlan?.planName || 'N/A'}</td>
-                  <td>₹{txn.amount}</td>
-                  <td>{new Date(txn.date).toLocaleDateString('en-IN', {
+                  <td data-label="Chit Plan">{txn.chitPlan?.planName || 'N/A'}</td>
+<td data-label="Amount">₹{txn.amount}</td>
+<td data-label="Date">{new Date(txn.date).toLocaleDateString('en-IN', {
                     day: '2-digit', month: 'short', year: 'numeric'
                   })}</td>
-                  <td className={txn.status === 'Paid' ? 'paid' : 'pending'}>
-                    {txn.status}
-                  </td>
+                <td data-label="Status" className={txn.status === 'Paid' ? 'paid' : 'pending'}>{txn.status}</td>
                 </tr>
               ))}
             </tbody>
