@@ -1,63 +1,98 @@
-import React from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import React, { useState } from "react";
+import "./UploadBrochure.css";
 
-import DashboardHome from './pages/DashboardHome/DashboardHome';
-import AllUsers from './pages/AllUsers/AllUsers';
-import CredentialGenerator from './pages/CredentialGenerator/CredentialGenerator';
-import AllTransactions from './pages/AllTransactions/AllTransactions';
-import UserDetails from './pages/UserDetails/UserDetails';
-import AdminProfile from './pages/AdminProfile/AdminProfile';
-import ChitPlans from './pages/ChitPlans/ChitPlans';
-import DashboardAnalytics from './pages/DashboardAnalytics/DashboardAnalytics';
-import AdminLayout from './Components/AdminLayout/AdminLayout';
-import Login from './pages/Login/Login';
-import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
-import AddPlan from './pages/AddPlans/AddPlan';
-import EditPlan from './pages/EditPlan/EditPlan';
-import AddUser from './pages/AddUser/AddUser';
-import EditUser from './pages/EditUser/EditUser';
-import Auctions from './pages/Auctions/Auctions';
-import UploadBrochure from './pages/UploadBrochure/UploadBrochure';
+const API_URL = import.meta.env.VITE_API_URL;
 
-const App = () => {
+const UploadBrochure = () => {
+  const [file, setFile] = useState(null);
+  const [uploading, setUploading] = useState(false);
+  const [success, setSuccess] = useState("");
+  const [error, setError] = useState("");
+  const [uploadedUrl, setUploadedUrl] = useState(""); // store uploaded URL
 
-  const url = import.meta.env.VITE_API_URL;
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+    setError("");
+    setSuccess("");
+    setUploadedUrl("");
+  };
+
+  const handleUpload = async () => {
+  if (!file) return setError("Please select a PDF brochure");
+
+  const formData = new FormData();
+  formData.append("brochure", file);
+
+  try {
+    setUploading(true);
+
+    const res = await fetch(`${API_URL}/api/admin/upload-brochure`, {
+      method: "POST",
+      body: formData
+    });
+
+    const data = await res.json();
+
+    if (data.brochure?.fileUrl) {
+      setSuccess("Brochure uploaded successfully!");
+      setUploadedUrl(data.brochure.fileUrl);
+      setFile(null);
+    } else {
+      setError("Upload failed. Try again.");
+      console.error(data);
+    }
+  } catch (err) {
+    console.error(err);
+    setError("Something went wrong");
+  } finally {
+    setUploading(false);
+  }
+};
 
   return (
-    <Routes>
-      {/* Default route */}
-      <Route path="/" element={<Navigate to="/admin/dashboard" replace />} />
+    <div className="upload-wrapper">
+      <div className="upload-card">
+        <h2>Upload Brochure</h2>
+        <p className="subtitle">
+          Update the official brochure. This will be used across the website and emails.
+        </p>
 
-      {/* Public route */}
-      <Route path="login" element={<Login url={url}/>} />
+        <div
+  className="upload-box"
+  onClick={() => document.getElementById("brochureInput").click()}
+>
+  <span className="upload-placeholder-icon">📁</span>
+  <p>{file ? file.name : "Click to select PDF brochure"}</p>
+  <input
+    id="brochureInput"
+    type="file"
+    accept="application/pdf"
+    onChange={handleFileChange}
+  />
+</div>
 
-      {/* Protected admin routes */}
-      <Route
-        path="/admin"
-        element={
-          <PrivateRoute>
-            <AdminLayout />
-          </PrivateRoute>
-        }
-      >
-        <Route index element={<DashboardHome url={url}/>} />
-        <Route path="dashboard" element={<DashboardHome url={url}/>} />
-        <Route path="users" element={<AllUsers url={url}/>} />
-        <Route path="/admin/user/:userId" element={<UserDetails url={url}/>} />
-        <Route path="/admin/edit-user/:userId" element={<EditUser url={url}/>} />
-        <Route path="/admin/add-user" element={<AddUser url={url}/>} />
-        <Route path="credentials" element={<CredentialGenerator url={url}/>} />
-        <Route path="transactions" element={<AllTransactions url={url}/>} />        
-        <Route path="profile" element={<AdminProfile url={url}/>} />
-        <Route path="chit-plans" element={<ChitPlans url={url}/>} />
-        <Route path="/admin/chit-plans/add" element={<AddPlan url={url}/>} />
-        <Route path="/admin/chit-plans/edit/:id" element={<EditPlan url={url}/>} />
-        <Route path="analytics" element={<DashboardAnalytics url={url}/>} />        
-        <Route path="auctions" element={<Auctions url={url}/>} />
-        <Route path="upload-brochure" element={<UploadBrochure url={url}/>} />
-      </Route>
-    </Routes>
+        {error && <p className="error-text">{error}</p>}
+        {success && <p className="success-text">{success}</p>}
+
+        {/* {uploadedUrl && (
+          <p>
+            View uploaded brochure:{" "}
+            <a href={uploadedUrl} target="_blank" rel="noopener noreferrer">
+              {uploadedUrl}
+            </a>
+          </p>
+        )} */}
+
+        <button
+          className="upload-btn"
+          onClick={handleUpload}
+          disabled={uploading}
+        >
+          {uploading ? "Uploading..." : "Upload Brochure"}
+        </button>
+      </div>
+    </div>
   );
 };
 
-export default App;
+export default UploadBrochure;
