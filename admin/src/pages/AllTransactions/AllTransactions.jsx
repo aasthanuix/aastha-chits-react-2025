@@ -107,6 +107,44 @@ const markAsPaid = async (id) => {
         </tbody>
       </table>
 
+      {/* Mobile Cards */}
+<div className="transactions-mobile">
+  {transactions.length > 0 ? (
+    transactions.map((txn) => (
+      <div key={txn._id} className="transaction-card">
+        <p><span>User:</span> {txn.user?.name || 'N/A'}</p>
+        <p><span>Plan:</span> {txn.chitPlan?.planName || 'N/A'}</p>
+        <p><span>Amount:</span> ₹{txn.amount}</p>
+        <p>
+          <span>Date:</span>{' '}
+          {txn.date ? new Date(txn.date).toLocaleDateString() : 'N/A'}
+        </p>
+        <p><span>Status:</span> {txn.status || 'Pending'}</p>
+
+        <div className="transaction-actions">
+          {txn.status === 'Pending' && (
+            <button
+              className="btn-edit"
+              onClick={() => markAsPaid(txn._id)}
+            >
+              Mark as Paid
+            </button>
+          )}
+
+          <button
+            className="btn-delete"
+            onClick={() => handleDeleteClick(txn._id)}
+          >
+            Delete
+          </button>
+        </div>
+      </div>
+    ))
+  ) : (
+    <p className="empty-text">No transactions found</p>
+  )}
+</div>
+
       <ConfirmModal
         show={showConfirm}
         title="Delete Transaction"
