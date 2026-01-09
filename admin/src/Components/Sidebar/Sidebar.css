@@ -7,19 +7,21 @@
   top: 0;
   left: 0;
   padding: 50px 20px;
+  transition: transform 0.3s ease-in-out;
+  z-index: 1000; /* ensure it overlays content on mobile */
 }
 
 .sidebar-logo {
-    font-size: 26px;
-    font-weight: 600;
-    font-family: system-ui;
-    margin-bottom: 40px;
-    text-align: center;
-    color: white;
-    text-decoration: none;
+  font-size: 26px;
+  font-weight: 600;
+  font-family: system-ui;
+  margin-bottom: 40px;
+  text-align: center;
+  color: white;
+  text-decoration: none;
 }
 
-.sidebar-nav{
+.sidebar-nav {
   margin-top: 50px;
 }
 
@@ -33,12 +35,40 @@
   text-decoration: none;
   transition: all 0.2s ease-in-out;
   margin-bottom: 8px;
-    font-size: 18px;
-    font-family: system-ui;
+  font-size: 18px;
+  font-family: system-ui;
 }
 
 .sidebar-nav a:hover,
 .sidebar-nav .active {
   background-color: #343a40;
   color: #fff;
+}
+
+/* =================== */
+/* Responsive styles   */
+/* =================== */
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%); /* hide by default */
+    padding: 20px 15px; /* smaller padding */
+  }
+
+  .sidebar.open {
+    transform: translateX(0); /* slide in when open */
+  }
+
+  .sidebar-logo {
+    font-size: 22px;
+    margin-bottom: 30px;
+  }
+
+  .sidebar-nav {
+    margin-top: 30px;
+  }
+
+  .sidebar-nav a {
+    font-size: 16px;
+    padding: 10px 12px;
+  }
 }
