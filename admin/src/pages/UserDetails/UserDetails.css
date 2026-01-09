@@ -1,102 +1,189 @@
-/* Container */
+/* ========================= */
+/* Container                 */
+/* ========================= */
 .user-details-container {
-  padding: 20px;
-  max-width: 900px;
-  margin: 0 auto;
-  font-family: Arial, sans-serif;
-  color: #333;
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 0 16px;
+  font-family: 'Inter', 'Poppins', system-ui, sans-serif;
+  color: #1f2937;
 }
 
-/* Page Title */
+/* ========================= */
+/* Page Title                */
+/* ========================= */
 .user-details-container h2 {
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-weight: 700;
+  margin-bottom: 2rem;
   text-align: center;
-  font-size: 26px;
-  margin-bottom: 20px;
-  color: #2c3e50;
+  color: #4f46e5;
 }
 
-/* User Info Card */
+/* ========================= */
+/* User Info Card            */
+/* ========================= */
 .user-info-card {
   background: #ffffff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 20px;
-  margin-bottom: 30px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 14px;
+  padding: 22px 28px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  margin-bottom: 2rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  word-wrap: break-word;
+}
+
+.user-info-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.12);
 }
 
 .user-info-card h3 {
-  font-size: 22px;
-  margin-bottom: 10px;
-  color: #1a73e8;
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+  color: #111827;
 }
 
 .user-info-card p {
-  font-size: 16px;
-  margin: 6px 0;
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+  word-break: break-word;
 }
 
 .user-info-card strong {
-  color: #555;
+  color: #4f46e5;
 }
 
-/* Transactions Section */
+/* ========================= */
+/* Transactions Table        */
+/* ========================= */
+.user-transactions {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 22px 28px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.user-transactions:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+}
+
 .user-transactions h3 {
-  font-size: 20px;
-  margin-bottom: 15px;
-  color: #2c3e50;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #4f46e5;
 }
 
-/* Table Styling */
+/* ========================= */
+/* Transactions Table Styles */
+/* ========================= */
 .user-transactions-table {
   width: 100%;
   border-collapse: collapse;
-  background: #ffffff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+  font-size: 0.95rem;
+  text-align: left;
+  border-radius: 12px;
   overflow: hidden;
+}
+
+.user-transactions-table thead {
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
+  color: #fff;
 }
 
 .user-transactions-table th,
 .user-transactions-table td {
-  padding: 12px 15px;
-  text-align: center;
-  font-size: 15px;
-  border-bottom: 1px solid #ddd;
+  padding: 12px 16px;
+  border-bottom: 1px solid #e5e7eb;
+  word-break: break-word;
 }
 
 .user-transactions-table th {
-  background-color: #1a73e8;
-  color: white;
-  font-weight: bold;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
 }
 
-.user-transactions-table tr:hover {
-  background-color: #f9f9f9;
+.user-transactions-table tbody tr:nth-child(even) {
+  background: #f9fafb;
 }
 
-/* Status Colors */
+.user-transactions-table tbody tr:hover {
+  background: #eef2ff;
+}
+
+/* ========================= */
+/* Status Labels             */
+/* ========================= */
 .paid {
-  color: #28a745;
-  font-weight: bold;
+  color: #16a34a;
+  font-weight: 600;
 }
 
 .pending {
-  color: #dc3545;
-  font-weight: bold;
+  color: #b45309;
+  font-weight: 600;
 }
 
-/* Mark as Paid Button */
-.user-transactions-table button {
-  background: #1a73e8;
-  color: white;
-  padding: 6px 12px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
-}
+/* ========================= */
+/* Responsive Styles         */
+/* ========================= */
+@media (max-width: 768px) {
+  .user-info-card,
+  .user-transactions {
+    padding: 16px 20px;
+  }
 
-.user-transactions-table button:hover {
-  background: #155bb5;
+  .user-transactions-table thead {
+    display: none;
+  }
+
+  .user-transactions-table,
+  .user-transactions-table tbody,
+  .user-transactions-table tr,
+  .user-transactions-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .user-transactions-table tr {
+    margin-bottom: 14px;
+    background: #ffffff;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    border-radius: 12px;
+    padding: 12px 10px;
+  }
+
+  .user-transactions-table td {
+    padding: 6px 0;
+    text-align: right;
+    position: relative;
+    font-size: 0.9rem;
+  }
+
+  .user-transactions-table td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: 600;
+    color: #4b5563;
+    text-transform: capitalize;
+    max-width: 45%;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    white-space: normal;
+  }
+
+  .user-transactions-table td span,
+  .user-transactions-table td {
+    display: inline-block;
+    max-width: 95%;
+    text-align: right;
+    word-break: break-word;
+    white-space: normal;
+  }
 }
