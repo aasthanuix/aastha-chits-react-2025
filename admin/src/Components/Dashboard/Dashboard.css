@@ -134,12 +134,98 @@
 
 /* Responsive tweaks */
 @media (max-width: 480px) {
+  .dashboard-title {
+    font-size: 1.6rem;
+    line-height: 1.3;
+  }
+
+  .dashboard-desc {
+    font-size: 0.95rem;
+  }
+
   .stat-card {
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: row;
+    align-items: center;
+    padding: 0.9rem 1rem;
   }
 
   .stat-icon {
-    margin-bottom: 0.6rem;
+    width: 46px;
+    height: 46px;
+    font-size: 2rem;
+    margin-right: 0.8rem;
+  }
+
+  .stat-info h3 {
+    font-size: 1rem;
+  }
+
+  .stat-value {
+    font-size: 1.6rem;
+  }
+
+  .dashboard-info-title {
+    font-size: 1.3rem;
+  }
+
+  .dashboard-info-list li {
+    padding: 8px 12px;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .dashboard-container {
+    max-width: 95%;
+    margin: 1.5rem auto;
+  }
+
+  .dashboard-title {
+    font-size: 2.1rem;
+  }
+
+  .dashboard-desc {
+    font-size: 1.05rem;
+  }
+
+  .stat-value {
+    font-size: 1.9rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-title {
+    font-size: 1.9rem;
+  }
+
+  .dashboard-desc {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .stats-grid {
+    gap: 1.2rem;
+  }
+
+  .stat-card {
+    padding: 1rem 1.2rem;
+  }
+
+  .stat-icon {
+    width: 52px;
+    height: 52px;
+    font-size: 2.2rem;
+  }
+
+  .stat-info h3 {
+    font-size: 1.05rem;
+  }
+
+  .stat-value {
+    font-size: 1.7rem;
+  }
+
+  .dashboard-info {
+    padding: 16px;
   }
 }
