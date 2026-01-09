@@ -1,1 +1,155 @@
+/* ========================= */
+/* Container                 */
+/* ========================= */
+.admin-transactions-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 16px;
+  font-family: 'Inter', 'Poppins', sans-serif;
+  color: #1f2937;
+}
+
+.admin-transactions-container h2 {
+  text-align: center;
+  color: #4f46e5;
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  margin-bottom: 1.5rem;
+}
+
+/* ========================= */
+/* Messages                  */
+/* ========================= */
+.message {
+  margin-top: 10px;
+  font-weight: 500;
+  color: #059669;
+}
+
+/* ========================= */
+/* User Select               */
+/* ========================= */
+.select-user {
+  margin-bottom: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.select-user select {
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  font-size: 0.95rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.select-user select:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99,102,241,0.2);
+}
+
+/* ========================= */
+/* Add Transaction Form      */
+/* ========================= */
+.add-transaction-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 1.5rem;
+}
+
+.add-transaction-form input {
+  flex: 1 1 200px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  font-size: 0.95rem;
+}
+
+.add-transaction-form input:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99,102,241,0.2);
+}
+
+.btn.add-btn {
+  padding: 10px 16px;
+  border-radius: 12px;
+  background: #6366f1;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn.add-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(99,102,241,0.35);
+}
+
+/* ========================= */
+/* Transactions Table        */
+/* ========================= */
+.transactions-table-wrapper {
+  overflow-x: auto;
+}
+
+.transactions-table {
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.transactions-table th,
+.transactions-table td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: left;
+}
+
+.transactions-table thead {
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
+  color: #fff;
+}
+
+.transactions-table tbody tr:nth-child(even) {
+  background: #f9fafb;
+}
+
+.transactions-table tbody tr:hover {
+  background: #eef2ff;
+}
+
+.paid {
+  color: #16a34a;
+  font-weight: 600;
+}
+
+.pending {
+  color: #b45309;
+  font-weight: 600;
+}
+
+/* ========================= */
+/* Responsive                 */
+/* ========================= */
+@media (max-width: 768px) {
+  .add-transaction-form {
+    flex-direction: column;
+  }
+
+  .add-transaction-form input,
+  .btn.add-btn {
+    flex: 1 1 100%;
+  }
+
+  .transactions-table th,
+  .transactions-table td {
+    font-size: 0.9rem;
+  }
+}
 
