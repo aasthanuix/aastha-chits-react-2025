@@ -1,4 +1,3 @@
-
 .admin-layout {
   display: flex;
   height: 100vh;
@@ -15,6 +14,8 @@
   left: 0;
   top: 0;
   bottom: 0;
+  transition: transform 0.3s ease;
+  z-index: 1000; /* ensure it stays above main content on mobile */
 }
 
 .admin-main {
@@ -23,6 +24,7 @@
   flex-direction: column;
   width: calc(100% - 240px);
   height: 100vh;
+  transition: margin-left 0.3s ease;
 }
 
 .admin-header {
@@ -41,4 +43,46 @@
   flex: 1;
   padding: 20px;
   background-color: #f9f9f9;
+}
+
+/* ======================= */
+/* Responsive for Mobile */
+/* ======================= */
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+    width: 240px; /* keep same width */
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .admin-main {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .admin-header {
+    padding: 0 15px;
+    justify-content: space-between;
+  }
+}
+
+/* Optional: overlay effect when sidebar is open on mobile */
+@media (max-width: 768px) {
+  .sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.4);
+    z-index: 900;
+    display: none;
+  }
+
+  .sidebar-overlay.active {
+    display: block;
+  }
 }
