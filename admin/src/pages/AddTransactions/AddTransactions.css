@@ -1,110 +1,140 @@
-/* Overlay background */
+/* ========================= */
+/* Modal Overlay             */
+/* ========================= */
 .modal-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.45);
+  inset: 0;
+  background: rgba(0,0,0,0.45);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 999;
+  z-index: 1000;
+  padding: 16px;
 }
 
-/* Modal box */
+/* ========================= */
+/* Modal Box                 */
+/* ========================= */
 .modal-box {
-  background: white;
-  padding: 25px;
-  border-radius: 12px;
+  background: #fff;
+  border-radius: 14px;
   width: 100%;
-  max-width: 420px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
-  animation: slideUp 0.3s ease-in-out;
+  max-width: 400px;
+  padding: 24px 28px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+  animation: slideIn 0.3s ease forwards;
 }
 
-/* Heading */
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 .modal-box h3 {
-  font-size: 20px;
-  font-weight: 600;
-  margin-bottom: 15px;
+  font-size: 1.6rem;
+  color: #4f46e5;
   text-align: center;
+  margin-bottom: 1rem;
 }
 
-/* Success & error messages */
-.success {
-  background: #d4edda;
-  color: #155724;
-  padding: 8px;
-  border-radius: 6px;
-  font-size: 14px;
-  text-align: center;
-}
-.error {
-  background: #f8d7da;
-  color: #721c24;
-  padding: 8px;
-  border-radius: 6px;
-  font-size: 14px;
-  text-align: center;
-}
-
-/* Form fields */
+/* ========================= */
+/* Form Styles               */
+/* ========================= */
 .modal-box form {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 12px;
 }
+
 .modal-box select,
 .modal-box input {
-  padding: 10px;
-  font-size: 14px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  outline: none;
-  transition: border 0.2s;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  font-size: 0.95rem;
+  width: 100%;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
+
 .modal-box select:focus,
 .modal-box input:focus {
-  border-color: #007bff;
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99,102,241,0.2);
 }
 
-/* Buttons row */
+/* ========================= */
+/* Messages                  */
+/* ========================= */
+.success {
+  color: #16a34a;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.error {
+  color: #dc2626;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+/* ========================= */
+/* Buttons                   */
+/* ========================= */
 .modal-buttons {
   display: flex;
-  gap: 10px;
-}
-.modal-buttons button {
-  flex: 1;
-  padding: 10px;
-  border: none;
-  border-radius: 6px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-.modal-buttons button:first-child {
-  background: #007bff;
-  color: white;
-}
-.modal-buttons button:first-child:hover {
-  background: #0056b3;
-}
-.modal-buttons .cancel-btn {
-  background: #ccc;
-}
-.modal-buttons .cancel-btn:hover {
-  background: #999;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 10px;
 }
 
-/* Slide up animation */
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
+.modal-buttons button {
+  flex: 1;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.modal-buttons button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Add Transaction Button */
+.modal-buttons button[type="submit"] {
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
+  color: #fff;
+}
+
+.modal-buttons button[type="submit"]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(99,102,241,0.35);
+}
+
+/* Cancel Button */
+.modal-buttons .cancel-btn {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.modal-buttons .cancel-btn:hover {
+  background: #e5e7eb;
+}
+
+/* ========================= */
+/* Responsive Styles         */
+/* ========================= */
+@media (max-width: 480px) {
+  .modal-box {
+    padding: 20px 16px;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  .modal-buttons {
+    flex-direction: column;
   }
 }
