@@ -1,3 +1,6 @@
+/* ========================= */
+/* Page Layout               */
+/* ========================= */
 .admin-page {
   padding: 20px;
   background: #f8f9fa;
@@ -5,12 +8,15 @@
 }
 
 .page-title {
-  font-size: 24px;
+  font-size: clamp(1.4rem, 2.5vw, 1.8rem);
   font-weight: 600;
   margin-bottom: 20px;
   color: #333;
 }
 
+/* ========================= */
+/* Actions                   */
+/* ========================= */
 .chitplans-actions {
   margin-bottom: 20px;
   display: flex;
@@ -18,57 +24,69 @@
 }
 
 .btn-primary {
-  padding: 10px 20px;
+  padding: 10px 18px;
   background: #007bff;
   border: none;
   color: white;
   font-size: 14px;
-  border-radius: 5px;
+  border-radius: 6px;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: background 0.25s ease;
 }
 
 .btn-primary:hover {
   background: #0056b3;
 }
 
+/* ========================= */
+/* Table Wrapper             */
+/* ========================= */
 .chitplans-table {
   width: 100%;
   border-collapse: collapse;
   background: white;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  font-family: sans-serif;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  font-family: system-ui, sans-serif;
   font-weight: 500;
 }
 
-.chitplans-table th,
-.chitplans-table td {
-  padding: 12px 15px;
-  border: 1px solid #ddd;
-  text-align: center;
-}
-
+/* Head */
 .chitplans-table th {
   background: #343a40;
   color: white;
+  padding: 12px;
+  font-size: 14px;
+  white-space: nowrap;
 }
 
+/* Cells */
+.chitplans-table td {
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: center;
+  font-size: 16px;
+}
+
+/* Image */
 .plan-img {
-  width: 50px;
-  height: 50px;
+  width: 48px;
+  height: 48px;
   object-fit: cover;
-  border-radius: 5px;
+  border-radius: 6px;
 }
 
+/* ========================= */
+/* Buttons                   */
+/* ========================= */
 .btn-edit,
 .btn-delete {
-  padding: 5px 10px;
+  padding: 6px 10px;
   font-size: 13px;
   border: none;
   cursor: pointer;
-  margin: 0 3px;
+  margin: 4px 2px;
   border-radius: 4px;
-  transition: 0.3s;
+  transition: background 0.25s ease;
 }
 
 .btn-edit {
@@ -89,9 +107,111 @@
   background: #c82333;
 }
 
+/* ========================= */
+/* Tablet (≤ 1024px)         */
+/* ========================= */
+@media (max-width: 1024px) {
+  .chitplans-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
+
+/* ========================= */
+/* Mobile (≤ 768px)          */
+/* ========================= */
+@media (max-width: 768px) {
+  .chitplans-table,
+  .chitplans-table thead,
+  .chitplans-table tbody,
+  .chitplans-table th,
+  .chitplans-table td,
+  .chitplans-table tr {
+    display: block;
+  }
+
+  .chitplans-table thead {
+    display: none;
+  }
+
+  .chitplans-table tr {
+    background: #fff;
+    margin-bottom: 14px;
+    border-radius: 10px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+    padding: 12px;
+  }
+
+  .chitplans-table td {
+    border: none;
+    text-align: left;
+    padding: 8px 0;
+    font-size: 14px;
+  }
+
+  .chitplans-table td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    display: block;
+    color: #555;
+    margin-bottom: 2px;
+    font-size: 12px;
+    text-transform: uppercase;
+  }
+
+  .plan-img {
+    margin-bottom: 8px;
+  }
+
+  .btn-edit,
+  .btn-delete {
+    width: 48%;
+    margin-top: 6px;
+  }
+}
+
+/* ========================= */
+/* Empty State               */
+/* ========================= */
 .no-data {
   text-align: center;
-  padding: 15px;
+  padding: 20px;
   font-size: 14px;
   color: #777;
+}
+
+/* ========================= */
+/* Highlighted Fields        */
+/* ========================= */
+
+/* Plan Name – primary emphasis */
+.plan-name {
+  font-weight: 700;
+  color: #1f2937; 
+  font-size: 18px !important;
+  text-transform: uppercase;
+}
+
+/* Total Amount – financial highlight */
+.plan-amount {
+  font-weight: 700;
+  color: #1f2937; 
+  font-size: 18px !important;
+}
+
+/* Subtle badge feel on mobile */
+@media (max-width: 768px) {
+  .plan-name {
+    font-size: 16px;
+  }
+
+  .plan-amount {
+    font-size: 16px;
+    background: rgba(79, 70, 229, 0.08);
+    padding: 4px 8px;
+    border-radius: 6px;
+    display: inline-block;
+    width: fit-content;
+  }
 }
