@@ -8,7 +8,7 @@ const UploadBrochure = () => {
   const [uploading, setUploading] = useState(false);
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
-  const [uploadedUrl, setUploadedUrl] = useState(""); // store uploaded URL
+  const [uploadedUrl, setUploadedUrl] = useState(""); 
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
