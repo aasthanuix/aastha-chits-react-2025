@@ -17,11 +17,12 @@ import EditPlan from './pages/EditPlan/EditPlan';
 import AddUser from './pages/AddUser/AddUser';
 import EditUser from './pages/EditUser/EditUser';
 import Auctions from './pages/Auctions/Auctions';
+import UploadBrochure from './pages/UploadBrochure/UploadBrochure';
 
 const App = () => {
 
-  const url = "https://api.universalsexports.com";
-  
+  const url = import.meta.env.VITE_API_URL;
+
   return (
     <Routes>
       {/* Default route */}
@@ -53,6 +54,7 @@ const App = () => {
         <Route path="/admin/chit-plans/edit/:id" element={<EditPlan url={url}/>} />
         <Route path="analytics" element={<DashboardAnalytics url={url}/>} />        
         <Route path="auctions" element={<Auctions url={url}/>} />
+        <Route path="upload-brochure" element={<UploadBrochure url={url}/>} />
       </Route>
     </Routes>
   );
