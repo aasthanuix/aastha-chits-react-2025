@@ -1,104 +1,163 @@
+/* ================= Container ================= */
 .admin-profile-container {
-  max-width: 600px;
-  margin: auto;
-  padding: 20px;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  font-family: sans-serif;
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 24px;
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(99, 102, 241, 0.12);
+  font-family: 'Inter', sans-serif;
 }
 
+/* ================= Title ================= */
 .profile-title {
   text-align: center;
-  margin-bottom: 20px;
-  color: #0056b3;
+  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
   font-weight: 700;
-  font-size: 35px;
+  margin-bottom: 28px;
+  color: #000;
 }
 
+/* ================= Info Card ================= */
 .admin-info-card {
   display: flex;
   align-items: center;
-  gap: 15px;
-  background: #f8f9fa;
-  padding: 15px;
-  border-radius: 10px;
-  margin-bottom: 20px;
+  gap: 22px;
+  padding: 20px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #eef2ff, #f8fafc);
+  border: 1px solid #e0e7ff;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
 }
 
 .admin-avatar {
-  width: 90px;
-  height: 90px;
   border-radius: 50%;
   object-fit: cover;
+  border: 3px solid #6366f1;
 }
 
 .admin-details p {
-  margin: 16px 0;
-  font-size: 16px;
+  margin: 6px 0;
+  font-size: 0.95rem;
+  color: #1f2937;
 }
 
+.admin-details strong {
+  color: #4338ca;
+}
+
+/* ================= Form ================= */
 .admin-profile-form {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
 }
 
-.admin-profile-form h3{
-    font-size: 25px;
-    color: #444;
+.admin-profile-form h3 {
+  grid-column: span 2;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #4338ca;
+  margin-bottom: 10px;
 }
 
-.admin-profile-form input[type="text"],
-.admin-profile-form input[type="email"],
-.admin-profile-form input[type="password"] {
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  font-size: 15px;
-}
-
+/* ================= Avatar Upload ================= */
 .avatar-upload {
+  grid-column: span 2;
   display: flex;
-  flex-direction: column;
-  gap: 8px;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
 }
 
-.avatar-preview {
-  width: 80px;
-  height: 80px;
+.avatar-upload label {
+  font-weight: 600;
+  color: #374151;
+}
+
+.avatar-upload input[type="file"] {
+  font-size: 0.85rem;
+}
+
+.avatar-upload img {
   border-radius: 50%;
+  border: 2px solid #6366f1;
   object-fit: cover;
 }
 
+/* ================= Inputs ================= */
+.admin-profile-form input {
+  padding: 14px 14px;
+  border-radius: 12px;
+  border: 1.5px solid #e5e7eb;
+  background: #f9fafb;
+  font-size: 0.95rem;
+  transition: all 0.25s ease;
+}
+
+.admin-profile-form input:focus {
+  outline: none;
+  background: #fff;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+/* ================= Button ================= */
 .profile-update-btn {
-    background-color: #218838;
-    color: white;
-    padding: 15px;
-    font-size: 16px;
-    font-weight: 700;
-    border: 1px solid #218838;
-    border-radius: 8px;
-    cursor: pointer;
+  grid-column: span 2;
+  margin-top: 10px;
+  padding: 14px;
+  border-radius: 14px;
+  border: none;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #fff;
+  cursor: pointer;
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .profile-update-btn:hover {
-  background-color: #0b641f;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(99, 102, 241, 0.35);
+}
+
+/* ================= Messages ================= */
+.success-msg,
+.error-msg {
+  grid-column: span 2;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-top: 10px;
 }
 
 .success-msg {
-  color: green;
-  text-align: center;
+  color: #16a34a;
 }
 
 .error-msg {
-  color: red;
-  text-align: center;
+  color: #dc2626;
 }
 
-.admin-profile{
-    color: #142e7f;
-    font-size: 20px;
-    font-weight: 500;
-    flex: 1 1 1px;
+/* ================= Responsive ================= */
+@media (max-width: 768px) {
+  .admin-profile-form {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-profile-form h3,
+  .profile-update-btn,
+  .avatar-upload,
+  .success-msg,
+  .error-msg {
+    grid-column: span 1;
+  }
+
+  .admin-info-card {
+    flex-direction: column;
+    text-align: center;
+  }
 }
