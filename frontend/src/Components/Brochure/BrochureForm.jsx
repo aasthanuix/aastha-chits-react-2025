@@ -44,8 +44,7 @@ const BrochureForm = ({ isOpen, onClose }) => {
     setSubmitting(true);
 
     try {
-      // 1️⃣ Send form data to admin via EmailJS
-      await emailjs.send(
+   await emailjs.send(
   import.meta.env.VITE_EMAILJS_SERVICE_ID,
   import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
   {
@@ -58,20 +57,16 @@ const BrochureForm = ({ isOpen, onClose }) => {
   import.meta.env.VITE_EMAILJS_PUBLIC_KEY
 );
 
-const res = await fetch(`${API_URL}/api/send-brochure`, {
-  method: "POST",
-});
+// 🚀 Trigger brochure download
+window.open(`${API_URL}/api/send-brochure`, "_blank");
 
-if (!res.ok) throw new Error("Failed to get brochure");
+setShowSuccess(true);
+setFormData({ name: '', email: '', contact: '' });
+onClose();
 
-const blob = await res.blob();
 
-const link = document.createElement("a");
-link.href = window.URL.createObjectURL(blob);
-link.download = "Aastha-Chits-Brochure.pdf"; 
-document.body.appendChild(link);
-link.click();
-link.remove();
+window.open(`${API_URL}/api/send-brochure`, "_blank");
+
 
       setShowSuccess(true);
       setFormData({ name: '', email: '', contact: '' });
