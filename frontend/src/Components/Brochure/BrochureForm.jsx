@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
+import emailjs from "@emailjs/browser"; // install via npm
 import './BrochureForm.css';
 
-const BrochureForm = ({ isOpen, onClose, url }) => {
+const API_URL = import.meta.env.VITE_API_URL;
+
+const BrochureForm = ({ isOpen, onClose }) => {
   const [formData, setFormData] = useState({ name: '', email: '', contact: '' });
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
@@ -18,24 +21,20 @@ const BrochureForm = ({ isOpen, onClose, url }) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-    setErrors((prev) => ({ ...prev, [name]: '' }));
+    setFormData(prev => ({ ...prev, [name]: value }));
+    setErrors(prev => ({ ...prev, [name]: '' }));
   };
 
   const validate = () => {
     const newErrors = {};
-    
-   if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Invalid email format.';
-    }
-   if (!/^\d{10}$/.test(formData.contact)) {
-      newErrors.contact = 'Contact must be 10 digits.';
-    }
+    if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = 'Invalid email format.';
+    if (!/^\d{10}$/.test(formData.contact)) newErrors.contact = 'Contact must be 10 digits.';
     return newErrors;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const validationErrors = validate();
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
@@ -45,32 +44,41 @@ const BrochureForm = ({ isOpen, onClose, url }) => {
     setSubmitting(true);
 
     try {
-      const res = await fetch(url + '/api/send-brochure', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
+      // 1️⃣ Send form data to admin via EmailJS
+      await emailjs.send(
+  import.meta.env.VITE_EMAILJS_SERVICE_ID,
+  import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+  {
+    source: "Brochure Request",
+    name: formData.name,
+    email: formData.email,
+    contact: formData.contact || "—",
+    phone: "—",
+  },
+  import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+);
 
-      const data = await res.json();
+const res = await fetch(`${API_URL}/api/send-brochure`, {
+  method: "POST",
+});
 
-      if (data.success && data.fileUrl) {
-        // Trigger download from signed URL
-        const link = document.createElement('a');
-        link.href = data.fileUrl;
-        link.setAttribute('download', 'Aastha-Brochure.pdf');
-        document.body.appendChild(link);
-        link.click();
-        link.remove();
+if (!res.ok) throw new Error("Failed to get brochure");
 
-        setShowSuccess(true);
-        setFormData({ name: '', email: '', contact: '' });
-        onClose();
-      } else {
-        alert('Failed to send brochure. Please try again.');
-      }
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      alert('Something went wrong.');
+const blob = await res.blob();
+
+const link = document.createElement("a");
+link.href = window.URL.createObjectURL(blob);
+link.download = "Aastha-Chits-Brochure.pdf"; 
+document.body.appendChild(link);
+link.click();
+link.remove();
+
+      setShowSuccess(true);
+      setFormData({ name: '', email: '', contact: '' });
+      onClose();
+    } catch (err) {
+      console.error(err);
+      alert("Something went wrong. Please try again.");
     } finally {
       setSubmitting(false);
     }
@@ -114,8 +122,8 @@ const BrochureForm = ({ isOpen, onClose, url }) => {
 
           <div className="brochure-buttons">
             <button type="submit" className="brochure-submit" disabled={submitting}>
-              {submitting ? 'Sending...' : 'Submit'}
-            </button>            
+              {submitting ? "Sending..." : "Submit & Download"}
+            </button>
           </div>
         </form>
         {showSuccess && <p className="brochure-success">Brochure sent successfully!</p>}
