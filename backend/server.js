@@ -75,6 +75,7 @@ const allowedOrigins = [
   "http://localhost:5174",
   "https://www.aasthachits.com",
   "https://aasthachits.com",
+  "https://admin.aasthachits.com",
 ];
 
 // Express CORS
